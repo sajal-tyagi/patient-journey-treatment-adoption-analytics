@@ -1,0 +1,7 @@
+Stage,Patients,Conversion_vs_Diagnosed_%,Stage_to_Stage_Conversion_%,Drop_Off_%
+Diagnosed,25000,100.0,0.0,0.0
+Doctor Consultation,13423,53.69,-46.31,46.31
+Treatment Recommended,7853,31.41,-41.5,41.5
+Treatment Started,10835,43.34,37.97,-37.97
+Treatment Continued,6452,25.81,-40.45,40.45
+Follow-up Completed,3390,13.56,-47.46,47.46

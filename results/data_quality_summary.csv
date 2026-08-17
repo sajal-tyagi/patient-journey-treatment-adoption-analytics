@@ -1,0 +1,21 @@
+Check,Issues_Found,Action_Taken
+Duplicate Patient_IDs,0,No action
+Missing values (excl. Treatment_Start_Date),0,No action
+Invalid age (<18 or >100),0,No action
+"Affordability_Score out of range [0,10]",0,No action
+"Healthcare_Access_Score out of range [0,10]",0,No action
+"Awareness_Score out of range [0,10]",0,No action
+"Side_Effect_Concern out of range [0,10]",0,No action
+Negative Treatment_Cost,0,No action
+Treatment start before diagnosis,0,No action
+Recommendation without consultation,0,No action
+Continuation without starting,0,No action
+Follow-up without continuation,0,No action
+Invalid category in Gender,0,No action needed
+Invalid category in Region,0,No action needed
+Invalid category in Urban_Rural,0,No action needed
+Invalid category in Income_Band,0,No action needed
+Invalid category in Insurance_Status,0,No action needed
+Invalid category in Disease_Severity,0,No action needed
+Drop_Off_Stage re-derived for consistency,0,Re-derived column
+Rows removed during cleaning,0,0 rows removed

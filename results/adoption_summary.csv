@@ -1,0 +1,24 @@
+Dimension,Category,Adopted,Total,Rate_%
+Age Group,18-30,2267,5269,43.03
+Age Group,31-45,2607,6116,42.63
+Age Group,46-60,2569,6027,42.62
+Age Group,61+,3392,7588,44.7
+Disease Severity,Mild,3552,9210,38.57
+Disease Severity,Moderate,4637,10638,43.59
+Disease Severity,Severe,2646,5152,51.36
+Insurance Status,Insured,7181,14797,48.53
+Insurance Status,Underinsured,2581,6537,39.48
+Insurance Status,Uninsured,1073,3666,29.27
+Region,Midwest,2191,4982,43.98
+Region,Northeast,2376,5471,43.43
+Region,Southeast,2379,5497,43.28
+Region,Southwest,1980,4580,43.23
+Region,West,1909,4470,42.71
+Treatment Recommended,0,5812,17147,33.9
+Treatment Recommended,1,5023,7853,63.96
+Previous Treatment,0,6481,14978,43.27
+Previous Treatment,1,4354,10022,43.44
+Cost Band,High ($35-60k),1446,4008,36.08
+Cost Band,Low (<$15k),3961,8206,48.27
+Cost Band,Medium ($15-35k),5126,11627,44.09
+Cost Band,Very High (>$60k),302,1159,26.06

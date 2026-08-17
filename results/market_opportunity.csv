@@ -1,0 +1,6 @@
+Region,Total_Patients,Treated_Patients,Untreated_Patients,Adoption_Rate_%,Adoption_Gap_%,Opp_Score
+Southeast,5497,2379,3118,43.28,56.72,0.7756
+Northeast,5471,2376,3095,43.43,56.57,0.6959
+West,4470,1909,2561,42.71,57.29,0.5
+Southwest,4580,1980,2600,43.23,56.77,0.3303
+Midwest,4982,2191,2791,43.98,56.02,0.2065

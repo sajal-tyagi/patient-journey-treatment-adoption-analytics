@@ -1,0 +1,7 @@
+Business_Segment,Total_Patients,Adopted,Adoption_Rate_%,Untreated_Patients
+High-Need / High-Ability,7112,3695,51.95,3417
+High-Need / Medium-Ability,4532,2082,45.94,2450
+High-Need / Low-Ability,4146,1506,36.32,2640
+Low-Need / High-Ability,4145,1841,44.41,2304
+Low-Need / Medium-Ability,2665,996,37.37,1669
+Low-Need / Low-Ability,2400,715,29.79,1685
