@@ -47,3 +47,20 @@ desktop.ini
 
 # Generated output (keep in repo for GitHub display)
 # outputs/ and results/ are intentionally tracked
+
+# Node / Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/.cache/
+node_modules/
+
+# Environment / secrets
+.env
+.env.local
+.env.production
+*.env
+
+# macOS
+.DS_Store
+**/.DS_Store

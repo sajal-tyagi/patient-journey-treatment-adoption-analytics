@@ -7,6 +7,86 @@
 
 ---
 
+## 🌐 Interactive Full-Stack Dashboard
+
+This project now includes a **React + FastAPI** interactive web dashboard that exposes all analytics through a professional browser-based UI.
+
+### Full-Stack Architecture
+
+```mermaid
+flowchart LR
+    A[Patient Data\nCSV 25k rows] --> B[Python Analytics\nPandas · Scikit-learn]
+    B --> C[Results & Charts\nCSV · PNG]
+    C --> D[FastAPI Backend\nREST API · Python]
+    D --> E[JSON Responses\n8 Endpoints]
+    E --> F[React Frontend\nVite · Recharts]
+    F --> G[Interactive Dashboard\n7 Pages · Filters]
+```
+
+### Tech Stack
+
+| Layer | Technologies |
+|-------|-------------|
+| **Analytics** | Python · Pandas · NumPy · Scikit-learn · Matplotlib · Seaborn |
+| **Backend** | FastAPI · Uvicorn · Python |
+| **Frontend** | React · Vite · JavaScript · Recharts |
+| **Data** | CSV files · SQL |
+| **Deployment** | Vercel-ready |
+
+### Dashboard Pages
+
+| Page | Description |
+|------|-------------|
+| **Overview** | 5 KPIs + journey funnel + adoption charts + insights |
+| **Patient Journey** | Full funnel + biggest drop-off + stage table |
+| **Treatment Adoption** | 5 charts across all patient dimensions |
+| **Patient Segments** | Segment distribution + adoption + table |
+| **Market Opportunity** | Ranked regions + opportunity scores |
+| **Model Insights** | Logistic regression metrics + coefficients |
+| **About** | Project overview + architecture + disclaimer |
+
+### Run Locally
+
+#### Option A — Separate terminals (recommended for development)
+
+**Terminal 1 — Backend:**
+```bash
+pip install -r requirements.txt
+uvicorn api.index:app --reload --port 8000
+```
+
+**Terminal 2 — Frontend:**
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Then open: **http://localhost:5173**
+
+#### Option B — Build and serve frontend statically
+```bash
+cd frontend && npm run build
+# Serve dist/ with any static server
+```
+
+### API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/api/health` | API health check |
+| GET | `/api/overview` | KPIs + summary stats |
+| GET | `/api/patient-journey` | Funnel stages + drop-offs |
+| GET | `/api/adoption` | Adoption by all dimensions |
+| GET | `/api/segments` | Patient segment analysis |
+| GET | `/api/market-opportunity` | Regional opportunity scores |
+| GET | `/api/model-insights` | Logistic regression results |
+| GET | `/api/filters/options` | Valid filter dropdown values |
+
+All endpoints accept optional query parameters: `region`, `gender`, `age_group`, `insurance`, `severity`.
+
+---
+
 ## Project Overview
 
 This end-to-end data analytics project analyses the **patient treatment journey** for a fictional pharmaceutical company (NovaCure Pharmaceuticals) and their fictional drug **Therapy X**.
@@ -129,9 +209,39 @@ python src/run_project.py
 patient-journey-treatment-adoption-analytics/
 │
 ├── README.md                          # This file
-├── requirements.txt                   # Python dependencies
-├── .gitignore                         # Files to exclude from git
+├── requirements.txt                   # Python + backend dependencies
+├── vercel.json                        # Vercel deployment config
+├── .gitignore                         # Files excluded from git
 ├── LICENSE                            # MIT License
+│
+├── api/                               # ── FastAPI Backend ──
+│   ├── index.py                       # 8 REST API endpoints
+│   └── requirements.txt               # Backend-specific deps
+│
+├── frontend/                          # ── React Frontend ──
+│   ├── package.json
+│   ├── vite.config.js                 # Vite + /api proxy config
+│   ├── index.html
+│   └── src/
+│       ├── main.jsx
+│       ├── App.jsx
+│       ├── index.css                  # Complete design system
+│       ├── api/
+│       │   └── analyticsApi.js        # Central API client
+│       ├── components/
+│       │   ├── Sidebar.jsx
+│       │   ├── KPICard.jsx
+│       │   ├── ChartCard.jsx
+│       │   ├── FiltersBar.jsx
+│       │   └── LoadingState.jsx
+│       └── pages/
+│           ├── Overview.jsx
+│           ├── PatientJourney.jsx
+│           ├── TreatmentAdoption.jsx
+│           ├── Segments.jsx
+│           ├── MarketOpportunity.jsx
+│           ├── ModelInsights.jsx
+│           └── About.jsx
 │
 ├── data/
 │   ├── patient_data.csv               # Raw synthetic dataset (25,000 rows)
@@ -150,38 +260,11 @@ patient-journey-treatment-adoption-analytics/
 ├── notebooks/
 │   └── healthcare_analysis.ipynb      # Interactive analysis notebook
 │
-├── results/
-│   ├── data_quality_summary.csv       # Data cleaning results
-│   ├── patient_journey_summary.csv    # Funnel analysis
-│   ├── segment_summary.csv            # Patient segment results
-│   ├── adoption_summary.csv           # Adoption rates by dimension
-│   ├── market_opportunity.csv         # Regional opportunity scores
-│   └── model_metrics.csv             # Logistic regression performance
-│
-├── outputs/
-│   ├── patient_journey_funnel.png     # Journey funnel chart
-│   ├── segment_distribution.png       # Segment size chart
-│   ├── adoption_by_segment.png        # Adoption by segment
-│   ├── adoption_by_severity.png       # Adoption by disease severity
-│   ├── adoption_by_insurance.png      # Adoption by insurance
-│   ├── adoption_by_region.png         # Adoption by region
-│   ├── adoption_by_cost.png           # Adoption by cost band
-│   ├── adoption_by_recommendation.png # Physician recommendation impact
-│   ├── feature_importance.png         # Logistic regression coefficients
-│   └── top_market_opportunities.png   # Regional opportunity chart
-│
-├── reports/
-│   ├── key_findings.md                # 8 key business findings
-│   ├── business_recommendations.md    # 6 actionable recommendations
-│   └── conclusion.md                  # Final project conclusion
-│
-├── powerbi/
-│   ├── dashboard_specification.md     # 5-page dashboard design spec
-│   └── dax_measures.md               # All DAX measures with code
-│
-└── docs/
-    ├── data_dictionary.md             # All 25 column descriptions
-    └── methodology.md                 # Plain-language methodology guide
+├── results/                           # CSV outputs from Python pipeline
+├── outputs/                           # PNG charts from Python pipeline
+├── reports/                           # Markdown business reports
+├── powerbi/                           # Power BI dashboard specification
+└── docs/                              # Data dictionary & methodology
 ```
 
 ---
@@ -190,7 +273,7 @@ patient-journey-treatment-adoption-analytics/
 
 ### Prerequisites
 ```bash
-git clone <repository-url>
+git clone https://github.com/sajal-tyagi/patient-journey-treatment-adoption-analytics.git
 cd patient-journey-treatment-adoption-analytics
 pip install -r requirements.txt
 ```
