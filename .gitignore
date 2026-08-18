@@ -55,6 +55,11 @@ frontend/.vite/
 frontend/.cache/
 node_modules/
 
+# Python cache
+__pycache__/
+api/__pycache__/
+*.pyc
+
 # Environment / secrets
 .env
 .env.local
@@ -64,3 +69,4 @@ node_modules/
 # macOS
 .DS_Store
 **/.DS_Store
+.vercel

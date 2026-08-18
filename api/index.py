@@ -14,19 +14,22 @@ DISCLAIMER: Synthetic data only. Not real patient data.
 
 from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from pathlib import Path
 import pandas as pd
 import numpy as np
 from typing import Optional
 
 # ── Paths ────────────────────────────────────────────────────────────────────
-ROOT = Path(__file__).resolve().parent.parent
-DATA_CLEAN     = ROOT / "data"    / "patient_data_clean.csv"
-JOURNEY_CSV    = ROOT / "results" / "patient_journey_summary.csv"
-ADOPTION_CSV   = ROOT / "results" / "adoption_summary.csv"
-SEGMENT_CSV    = ROOT / "results" / "segment_summary.csv"
-MARKET_CSV     = ROOT / "results" / "market_opportunity.csv"
-METRICS_CSV    = ROOT / "results" / "model_metrics.csv"
+ROOT          = Path(__file__).resolve().parent.parent
+DATA_CLEAN    = ROOT / "data"    / "patient_data_clean.csv"
+JOURNEY_CSV   = ROOT / "results" / "patient_journey_summary.csv"
+ADOPTION_CSV  = ROOT / "results" / "adoption_summary.csv"
+SEGMENT_CSV   = ROOT / "results" / "segment_summary.csv"
+MARKET_CSV    = ROOT / "results" / "market_opportunity.csv"
+METRICS_CSV   = ROOT / "results" / "model_metrics.csv"
+FRONTEND_DIST = ROOT / "frontend" / "dist"
 
 # ── App ───────────────────────────────────────────────────────────────────────
 app = FastAPI(
@@ -37,11 +40,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://localhost:3000",
-        "http://localhost:4173",
-    ],
+    allow_origins=["*"],
     allow_credentials=False,
     allow_methods=["GET"],
     allow_headers=["*"],
@@ -394,3 +393,16 @@ def filter_options():
         "insurances": ["All"] + sorted(df["Insurance_Status"].dropna().unique().tolist()),
         "severities": ["All"] + sorted(df["Disease_Severity"].dropna().unique().tolist()),
     }
+
+
+# ── Static Frontend (SPA) ─────────────────────────────────────────────────────
+# Serve the React build for all non-API routes (required for Vercel FastAPI preset)
+if FRONTEND_DIST.exists():
+    app.mount("/assets", StaticFiles(directory=str(FRONTEND_DIST / "assets")), name="assets")
+
+    @app.get("/{full_path:path}", include_in_schema=False)
+    async def serve_spa(full_path: str):
+        """Serve React SPA for all non-API routes."""
+        index = FRONTEND_DIST / "index.html"
+        return FileResponse(str(index))
+

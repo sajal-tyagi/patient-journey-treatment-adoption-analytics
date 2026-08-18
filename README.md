@@ -9,7 +9,9 @@
 
 ## 🌐 Interactive Full-Stack Dashboard
 
-This project now includes a **React + FastAPI** interactive web dashboard that exposes all analytics through a professional browser-based UI.
+**Live Demo:** [https://patient-journey-analytics.vercel.app](https://patient-journey-analytics.vercel.app)
+
+This project includes a **React + FastAPI** interactive web dashboard that exposes all analytics through a professional browser-based UI.
 
 ### Full-Stack Architecture
 
@@ -31,7 +33,7 @@ flowchart LR
 | **Backend** | FastAPI · Uvicorn · Python |
 | **Frontend** | React · Vite · JavaScript · Recharts |
 | **Data** | CSV files · SQL |
-| **Deployment** | Vercel-ready |
+| **Deployment** | Vercel · [Live Demo](https://patient-journey-analytics.vercel.app) |
 
 ### Dashboard Pages
 
@@ -64,6 +66,8 @@ npm run dev
 
 Then open: **http://localhost:5173**
 
+> Or use the **[Live Demo](https://patient-journey-analytics.vercel.app)** — no setup required.
+
 #### Option B — Build and serve frontend statically
 ```bash
 cd frontend && npm run build
@@ -93,7 +97,7 @@ This end-to-end data analytics project analyses the **patient treatment journey*
 
 Using a synthetic dataset of **25,000 patients**, the project answers key business questions about why patients do or do not start treatment, where they drop off in the journey, and which regions represent the highest market opportunity.
 
-The project demonstrates skills in **Python analytics, SQL, data visualisation, segmentation, logistic regression modelling, and Power BI dashboard design** — all at a beginner-to-intermediate level with a strong focus on business insight rather than technical complexity.
+The project demonstrates skills in **Python analytics, SQL, data visualisation, segmentation, logistic regression modelling, FastAPI backend development, and React frontend development** — all at a beginner-to-intermediate level with a strong focus on business insight rather than technical complexity.
 
 ---
 
@@ -174,8 +178,10 @@ For full column descriptions, see [`docs/data_dictionary.md`](docs/data_dictiona
 | **NumPy** | Numerical operations |
 | **Matplotlib / Seaborn** | Data visualisation |
 | **Scikit-learn** | Logistic regression modelling |
+| **FastAPI** | REST API backend |
+| **React + Vite** | Interactive web dashboard frontend |
+| **Recharts** | Chart library for the React dashboard |
 | **SQL** | Business analysis queries (SQLite/MySQL/PostgreSQL) |
-| **Power BI** | Interactive dashboard (specification provided) |
 | **Jupyter Notebook** | Interactive exploration and walkthrough |
 
 ---
@@ -192,8 +198,9 @@ flowchart LR
     F --> G[Adoption Analysis]
     G --> H[Logistic Regression]
     H --> I[Market Opportunity]
-    I --> J[Power BI Dashboard]
-    J --> K[Insights & Recommendations]
+    I --> J[FastAPI Backend]
+    J --> K[React Dashboard]
+    K --> L[Insights & Recommendations]
 ```
 
 **One-command execution:**
@@ -489,25 +496,14 @@ Concentrating commercial and medical education resources in the Southeast and No
 
 ---
 
-## Power BI Dashboard
+## Optional Power BI Reference
 
-A complete specification for a 5-page Power BI dashboard is provided.
+The interactive dashboard for this project is built with **React + FastAPI** (see the `frontend/` and `api/` directories). As an additional reference for data analysts working in Microsoft environments, the `powerbi/` folder contains a specification for an equivalent Power BI dashboard:
 
-**Pages:**
+- [`powerbi/dashboard_specification.md`](powerbi/dashboard_specification.md) — 5-page dashboard layout spec
+- [`powerbi/dax_measures.md`](powerbi/dax_measures.md) — DAX measures ready to paste into Power BI Desktop
 
-| Page | Purpose |
-|------|---------|
-| 1 — Executive Overview | Total patients, adoption rate, continuation rate, regional comparison |
-| 2 — Patient Journey | Funnel chart, stage conversions, drop-off by stage |
-| 3 — Patient Segments | Segment distribution, adoption by segment, cross-tabs |
-| 4 — Adoption Analysis | Adoption by insurance, cost, recommendation, urban/rural |
-| 5 — Market Opportunity | Untreated patients map, opportunity score ranking |
-
-**How to build it:**
-1. Open Power BI Desktop
-2. Import `data/patient_data_clean.csv`
-3. Follow [`powerbi/dashboard_specification.md`](powerbi/dashboard_specification.md)
-4. Add DAX measures from [`powerbi/dax_measures.md`](powerbi/dax_measures.md)
+> **Note:** Power BI is an optional reference only. The actual deployed project uses the React web dashboard.
 
 ---
 
@@ -609,4 +605,4 @@ See [`sql/README.md`](sql/README.md) for SQLite / MySQL / PostgreSQL import inst
 
 ---
 
-*Built with Python · Pandas · NumPy · Matplotlib · Seaborn · Scikit-learn · SQL · Power BI*
+*Built with Python · Pandas · NumPy · Matplotlib · Seaborn · Scikit-learn · FastAPI · React · Vite · Recharts · SQL*
